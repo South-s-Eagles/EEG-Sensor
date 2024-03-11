@@ -23,8 +23,3 @@ try:
 
 except mysql.connector.Error as error:
     print("Failed to insert record into EEG table {}".format(error))
-
-finally:
-    if connection.is_connected():
-        connection.close()
-        print("MySQL connection is closed")
