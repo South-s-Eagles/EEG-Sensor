@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import time
 
 
 def generate_eeg_data(duration=10, sampling_rate=1000, noise_level=0.5):
@@ -38,5 +39,8 @@ if __name__ == "__main__":
     sampling_rate = 1000  # Hz
     noise_level = 0.5
 
-    t, eeg_signal = generate_eeg_data(duration, sampling_rate, noise_level)
-    plot_eeg_data(t, eeg_signal)
+    while True:
+        t, eeg_signal = generate_eeg_data(duration, sampling_rate, noise_level)
+        print(f"Tempo é de {t}")
+        print(f"Signal é de {eeg_signal}")
+        time.sleep(1)
