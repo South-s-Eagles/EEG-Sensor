@@ -1,1 +1,1 @@
-# EEG-Sensor
+# EEG (electroencephalogram)
