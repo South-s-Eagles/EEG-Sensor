@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-03-13T02:35:38.155Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:123.0) Gecko/20100101 Firefox/123.0" etag="9THkT-PAr_3mExVzob1u" version="23.1.7" type="github">
+<mxfile host="app.diagrams.net" modified="2024-03-13T02:36:29.287Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:123.0) Gecko/20100101 Firefox/123.0" etag="6Z4cJYPdlXPf-tVQlCMU" version="23.1.7" type="github">
   <diagram name="Page-1" id="wwbnV_34MRmeV434yj99">
     <mxGraphModel dx="2261" dy="792" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -123,6 +123,9 @@
         </mxCell>
         <mxCell id="Q6biucnJC9BRc-59Tik5-42" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.069;entryY=0.98;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=#d79b00;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;endFill=1;curved=1;fillColor=#ffe6cc;" edge="1" parent="1" source="Q6biucnJC9BRc-59Tik5-40" target="Q6biucnJC9BRc-59Tik5-27">
           <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Q6biucnJC9BRc-59Tik5-43" value="&lt;font face=&quot;Kalam&quot;&gt;Guarda X mensagens na fila, onde x é o quanto que o serviço de processamento aguenta, sem que fique extremamente sobrecarregado. E depois envia essas X mensagens para a processar.&lt;br&gt;&lt;/font&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;labelBackgroundColor=default;fillColor=#e1d5e7;strokeColor=#9673a6;sketch=1;curveFitting=1;jiggle=2;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="210" y="660" width="250" height="160" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
