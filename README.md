@@ -45,3 +45,5 @@ Furthermore its possible to track the brain activity on a lot of scenarios, like
 
 [EEGLAB](https://sccn.ucsd.edu/eeglab/index.php)
 
+[IOT-Message-Protocol](https://learn.microsoft.com/en-us/azure/iot-operations/manage-mqtt-connectivity/overview-iot-mq)
+
