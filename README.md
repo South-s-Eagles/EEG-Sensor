@@ -47,4 +47,5 @@ Furthermore its possible to track the brain activity on a lot of scenarios, like
 
 [IOT-Message-Protocol](https://learn.microsoft.com/en-us/azure/iot-operations/manage-mqtt-connectivity/overview-iot-mq)
 [AI - WITH EEG](https://journals.sagepub.com/doi/full/10.26599/BSA.2020.9050017#con)
+[NEUROSITY - Use case](https://neurosity.co/)
 
