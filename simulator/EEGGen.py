@@ -1,4 +1,5 @@
 import numpy as np
+import chart
 
 
 class EEGComponent:
@@ -34,10 +35,10 @@ class EEGGen:
     def AddWave(self, freq, amp, start=0, reps=np.inf):
         self.AddComp(EEGComponent(freq, amp, start, reps))
 
-    def Generate(self, duration, random_state=None):
+    def Generate(self, duration, random_state=None, freq=10):
         if random_state is not None:
             np.random.seed(random_state)
-        N = int(round(duration * self.sampling_rate))
+        N = int(round(duration * freq))
         eeg = np.zeros(N)
         self.time_coords = np.linspace(0, N / self.sampling_rate, N)
 
@@ -50,3 +51,9 @@ class EEGGen:
                 eeg[si] += spike[1]
 
         return eeg
+
+
+if __name__ == "__main__":
+    eeg = EEGGen()
+    eeg.AddWave(1, 3)
+    chart.plot(eeg.Generate(10))

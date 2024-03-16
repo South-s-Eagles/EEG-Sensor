@@ -3,12 +3,8 @@ import chart
 
 # Lib imports
 import random
-from matplotlib.lines import lineStyles
-import matplotlib.pyplot as plt
 import time
 from enum import Enum
-from scipy.stats import norm
-from scipy.interpolate import interp1d
 import numpy as np
 
 
@@ -16,7 +12,7 @@ class Sign(Enum):
     PLUS = "+"
     MINUS = "-"
 
-    def choose_sign(self, wave_variation: float):
+    def ChooseSign(self, wave_variation: float):
         if random.random() < wave_variation:
             return self
         else:
@@ -40,24 +36,24 @@ class Wave:
         self.actual = round(min_freq, 3)
         self.curve = random.choice(list(Sign))
 
-    def to_string(self):
+    def ToString(self):
         return f"name: {self.name}\nmin_freq: {self.frequency.min}\nmax_freq: {self.frequency.max}\nvariation: {self.variation}\nactual: {self.actual}\ncurve: {self.curve.value}"
 
-    def is_max_out_of_bound(self) -> bool:
+    def IsMaxOutOfBound(self) -> bool:
         return self.actual >= self.frequency.max
 
-    def is_min_out_of_bound(self) -> bool:
+    def IsMinOutOfBound(self) -> bool:
         return self.actual <= self.frequency.min
 
-    def generate_wave(self):
-        self.curve = self.curve.choose_sign(self.frequency.flow)
+    def Generate(self):
+        self.curve = self.curve.ChooseSign(self.frequency.flow)
 
         variation_ratio = random.uniform(0.01, 0.03)
         variation_amount = self.actual * variation_ratio
 
-        if self.is_max_out_of_bound():
+        if self.IsMaxOutOfBound():
             self.curve = Sign.MINUS
-        if self.is_min_out_of_bound():
+        if self.IsMinOutOfBound():
             self.curve = Sign.PLUS
 
         if self.curve == Sign.MINUS:
@@ -81,16 +77,12 @@ if __name__ == "__main__":
 
     wave = Wave("Delta", 0.5, 4, 0.95)
 
-    # Definindo o período total em segundos (um dia)
-    total_period_seconds = 24 * 60 * 60
-
-    while current_time - inicio < total_period_seconds:
+    while True:
         current_time = time.time()
-        wave.generate_wave()
+        wave.Generate()
         frequency.append(wave.actual)
         time.sleep(time_variation)
-
-    # Criando um array de tempo para representar as horas do dia
-    tempo_dia = np.linspace(0, total_period_seconds, len(frequency))
+        if current_time - inicio > 1:
+            break
 
     chart.plot(frequency)
