@@ -1,3 +1,7 @@
+# Project imports
+import chart
+
+# Lib imports
 import random
 from matplotlib.lines import lineStyles
 import matplotlib.pyplot as plt
@@ -65,65 +69,6 @@ class Wave:
                 min(self.frequency.max, self.actual + variation_amount), 3
             )
 
-    def plot_frequency_graph(self, frequencies, seconds):
-        plt.plot(frequencies)
-        plt.xlabel(f"{seconds} segundo(s)")
-        plt.ylabel("Frequência (em Hz)")
-        plt.title(f"Ondas {self.name}")
-        plt.show()
-
-
-def plot(frequency, seconds):
-    plt.plot(frequency)
-    plt.xlabel(f"{seconds} segundo(s)")
-    plt.ylabel("Frequência (em Hz)")
-    plt.title("Ondas")
-    plt.show()
-
-
-def plot_eeg_with_normal_curve(frequency, time):
-    mu, std = norm.fit(frequency)
-    plt.plot(time, frequency, marker="o", linestyle="None", label="Dados de EEG")
-
-    xmin, xmax = min(time), max(time)
-    x = np.linspace(xmin, xmax, 100)
-    p = norm.pdf(x, mu, std)
-
-    plt.plot(x, p, "k", linewidth=2, label="Curva Normal")
-    plt.legend()
-
-    title = "Distribuição de Frequência no EEG\nMédia: %.2f, Desvio Padrão: %.2f" % (
-        mu,
-        std,
-    )
-    plt.title(title)
-    plt.xlabel("Tempo")
-    plt.ylabel("Frequência (Hz)")
-    plt.show()
-
-
-def plot_with_smooth_curve(frequency, time):
-    # Interpolação cúbica para suavizar as linhas
-    f = interp1d(time, frequency, kind="cubic")
-
-    # Novo conjunto de pontos de tempo para a curva suavizada
-    time_smooth = np.linspace(min(time), max(time), 300)
-
-    # Calcula os valores de frequência para a curva suavizada
-    frequency_smooth = f(time_smooth)
-
-    # Plota os pontos de dados do EEG e a curva suavizada
-    plt.plot(time, frequency, "bo", label="Dados de EEG")  # Pontos de dados do EEG
-    plt.plot(
-        time_smooth, frequency_smooth, "r-", label="Curva Suavizada"
-    )  # Curva suavizada
-    plt.legend()
-
-    plt.title("Dados de EEG com Curva Suavizada")
-    plt.xlabel("Tempo")
-    plt.ylabel("Frequência (Hz)")
-    plt.show()
-
 
 if __name__ == "__main__":
     wave_definitions = []
@@ -146,8 +91,6 @@ if __name__ == "__main__":
         frequency.append(wave.actual)
         time.sleep(time_variation)
 
-    # plot(frequency, 1)
-    # plot_eeg_with_normal_curve(frequency, time=np.linspace(0, 10, len(frequency)))
-    #
-    time = np.linspace(0, 10, len(frequency))
-    plot_with_smooth_curve(frequency, time)
+    time = np.linspace(0, 10, 1)
+
+    chart.plot(frequency, 1)
