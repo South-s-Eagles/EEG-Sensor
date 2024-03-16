@@ -80,17 +80,17 @@ if __name__ == "__main__":
     frequency = []
 
     wave = Wave("Delta", 0.5, 4, 0.95)
-    # wave = Wave("Theta", 4, 8, 0.85)
-    # wave = Wave("Alpha", 8, 12, 0.7)
-    # wave = Wave("Beta", 12, 25, 0.45)
-    # wave = Wave("Gamma", 25, 40, 0.25)
 
-    while current_time - inicio < 1:
+    # Definindo o período total em segundos (um dia)
+    total_period_seconds = 24 * 60 * 60
+
+    while current_time - inicio < total_period_seconds:
         current_time = time.time()
         wave.generate_wave()
         frequency.append(wave.actual)
         time.sleep(time_variation)
 
-    time = np.linspace(0, 10, 1)
+    # Criando um array de tempo para representar as horas do dia
+    tempo_dia = np.linspace(0, total_period_seconds, len(frequency))
 
-    chart.plot(frequency, 1)
+    chart.plot(frequency)
