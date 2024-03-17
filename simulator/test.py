@@ -1,33 +1,37 @@
+from random import choice
 import numpy as np
 import matplotlib.pyplot as plt
+import time
+import sql
 
 
-def simulate_eeg_signal(
-    num_intervals=24, interval_length=3600, mean_magnitude=5, std_dev=1
-):
-    magnitudes = np.random.normal(mean_magnitude, std_dev, num_intervals)
-    return magnitudes
-
-
-def plot_eeg_signal(magnitudes):
-    num_intervals = len(magnitudes)
-
-    time_intervals = np.arange(num_intervals)
-
-    plt.figure(figsize=(12, 6))
-    plt.plot(time_intervals, magnitudes, color="blue")
-
-    plt.xlabel("Intervalo de Tempo (horas)")
-    plt.ylabel("Magnitude do Sinal do EEG (µV)")
-    plt.title("Magnitude do Sinal do EEG ao Longo do Dia")
-
-    plt.grid(True)
-    plt.tight_layout()
-    plt.grid(visible=False)
-    plt.show()
+def generate_eeg_wave(wave_type, duration=1, fs=1000):
+    num_samples = int(duration * fs)
+    if wave_type == "delta":
+        eeg_wave = np.random.normal(loc=2, scale=1, size=num_samples)
+    elif wave_type == "theta":
+        eeg_wave = np.random.normal(loc=4, scale=1, size=num_samples)
+    elif wave_type == "alpha":
+        eeg_wave = np.random.normal(loc=6, scale=1, size=num_samples)
+    elif wave_type == "beta":
+        eeg_wave = np.random.normal(loc=8, scale=1, size=num_samples)
+    else:
+        raise ValueError("Invalid wave type")
+    return eeg_wave
 
 
 if __name__ == "__main__":
-    eeg_magnitudes = simulate_eeg_signal()
+    waves = [("delta", 1, 10), ("theta", 1, 50), ("alpha", 1, 100), ("beta", 1, 1000)]
 
-    plot_eeg_signal(eeg_magnitudes)
+    while True:
+        wave_choose = choice(waves)
+        eeg_wave = generate_eeg_wave(*wave_choose)
+        duration = wave_choose[1]
+        fs = wave_choose[2]
+        t = np.linspace(0, duration, int(fs * duration), endpoint=False)
+
+        for voltage in eeg_wave:
+            current_time_ms = int(time.time() * 1000)  # Horário atual em milissegundos
+            print(f"Time: {current_time_ms}, Voltage: {voltage}")
+            sql.insert_value(str(current_time_ms), voltage)
+        time.sleep(1)

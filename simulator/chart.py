@@ -40,3 +40,11 @@ def plot(frequency):
     plt.tight_layout()
 
     plt.show()
+
+
+def plot_microvolt(avg_per_second, time, wave):
+    plt.plot(time[: len(avg_per_second)], avg_per_second)
+    plt.title(f"Average {wave.capitalize()} Wave EEG per Second")
+    plt.xlabel("Time (s)")
+    plt.ylabel("Average Voltage (uV)")
+    plt.show()

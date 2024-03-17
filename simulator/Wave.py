@@ -99,10 +99,9 @@ if __name__ == "__main__":
 
     frequency = []
 
-    # Horários de mudança de onda cerebral
-    wave_change_times = [6, 10, 12, 14, 16, 18, 20, 22, 24]  # Em horas
+    wave_change_times = [6, 10, 12, 14, 16, 18, 20, 22, 24]
 
-    total_seconds_in_day = 24
+    total_seconds_in_day = 24 * 60
 
     for i in range(1, total_seconds_in_day):
         if current_wave is None:
@@ -110,8 +109,7 @@ if __name__ == "__main__":
         current_wave.Generate()
         frequency.append(current_wave.actual)
 
-        # Verifica se é hora de mudar de onda cerebral
-        if i in wave_change_times:
+        if i / 60 in wave_change_times:
             current_wave.GoToNextWave(frequency)
             current_wave = current_wave.next
 
