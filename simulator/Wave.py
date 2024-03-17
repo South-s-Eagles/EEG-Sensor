@@ -83,15 +83,13 @@ class Wave:
 
 
 if __name__ == "__main__":
-    wave_definitions = []
-
     time_variation = 1 / 10
 
-    inicio = time.time()
-    current_time = time.time()
-    frequency = []
-
-    gamma = Wave(name="Gamma", min_freq=35, max_freq=100, flow=0.50, wave=None)
+    delta = Wave(name="Delta", min_freq=0.5, max_freq=4, flow=0.95, wave=None)
+    theta = Wave(name="Theta", min_freq=3, max_freq=8, flow=0.85, wave=delta)
+    alpha = Wave(name="Alpha", min_freq=6, max_freq=12, flow=0.75, wave=theta)
+    beta = Wave(name="Beta", min_freq=10, max_freq=40, flow=0.65, wave=alpha)
+    gamma = Wave(name="Gamma", min_freq=35, max_freq=100, flow=0.50, wave=beta)
     beta = Wave(name="Beta", min_freq=10, max_freq=40, flow=0.65, wave=gamma)
     alpha = Wave(name="Alpha", min_freq=6, max_freq=12, flow=0.75, wave=beta)
     theta = Wave(name="Theta", min_freq=3, max_freq=8, flow=0.85, wave=alpha)
@@ -99,22 +97,22 @@ if __name__ == "__main__":
 
     current_wave = delta
 
-    counter = 0
+    frequency = []
 
-    while current_wave:
+    # Horários de mudança de onda cerebral
+    wave_change_times = [6, 10, 12, 14, 16, 18, 20, 22, 24]  # Em horas
+
+    total_seconds_in_day = 24
+
+    for i in range(1, total_seconds_in_day):
         if current_wave is None:
             break
-
-        current_time = time.time()
         current_wave.Generate()
         frequency.append(current_wave.actual)
 
-        if counter >= 100:
+        # Verifica se é hora de mudar de onda cerebral
+        if i in wave_change_times:
             current_wave.GoToNextWave(frequency)
             current_wave = current_wave.next
-            counter = 0
-
-        time.sleep(time_variation)
-        counter += 1
 
     chart.plot(frequency)
