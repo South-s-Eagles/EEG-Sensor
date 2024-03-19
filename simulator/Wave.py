@@ -67,7 +67,7 @@ class Wave:
             )
 
     def GoToNextWave(self, frequency_list):
-        transition_steps = 10
+        transition_steps = 50
         for _ in range(transition_steps):
             transition_ratio = random.uniform(0.8, 1.2)
             if self.next is not None:
@@ -79,12 +79,10 @@ class Wave:
                 )
                 self.actual = round(transition_freq, 3)
                 frequency_list.append(self.actual)
-                time.sleep((1 / 5) / transition_steps)
+                # time.sleep((1 / 5) / transition_steps)
 
 
-if __name__ == "__main__":
-    time_variation = 1 / 10
-
+def main():
     delta = Wave(name="Delta", min_freq=0.5, max_freq=4, flow=0.95, wave=None)
     theta = Wave(name="Theta", min_freq=3, max_freq=8, flow=0.85, wave=delta)
     alpha = Wave(name="Alpha", min_freq=6, max_freq=12, flow=0.75, wave=theta)
@@ -113,4 +111,13 @@ if __name__ == "__main__":
             current_wave.GoToNextWave(frequency)
             current_wave = current_wave.next
 
-    chart.plot(frequency)
+
+if __name__ == "__main__":
+    counter = 0
+    for i in range(0, 100_000):
+        inicio = time.time()
+        main()
+        fim = time.time()
+        counter += 1
+        print(counter)
+        print(round(fim - inicio, 2))

@@ -20,18 +20,16 @@ def generate_eeg_wave(wave_type, duration=1, fs=1000):
     return eeg_wave
 
 
-if __name__ == "__main__":
+def generate():
     waves = [("delta", 1, 10), ("theta", 1, 50), ("alpha", 1, 100), ("beta", 1, 1000)]
 
-    while True:
-        wave_choose = choice(waves)
-        eeg_wave = generate_eeg_wave(*wave_choose)
-        duration = wave_choose[1]
-        fs = wave_choose[2]
-        t = np.linspace(0, duration, int(fs * duration), endpoint=False)
+    wave_choose = choice(waves)
+    eeg_wave = generate_eeg_wave(*wave_choose)
+    duration = wave_choose[1]
+    fs = wave_choose[2]
+    t = np.linspace(0, duration, int(fs * duration), endpoint=False)
 
-        for voltage in eeg_wave:
-            current_time_ms = int(time.time() * 1000)  # Horário atual em milissegundos
-            print(f"Time: {current_time_ms}, Voltage: {voltage}")
-            sql.insert_value(str(current_time_ms), voltage)
-        time.sleep(1)
+    for voltage in eeg_wave:
+        current_time_ms = int(time.time() * 1000)
+        print(f"Time: {current_time_ms}, Voltage: {voltage}")
+        sql.insert_value("eeg", str(current_time_ms), voltage)

@@ -48,3 +48,12 @@ def plot_microvolt(avg_per_second, time, wave):
     plt.xlabel("Time (s)")
     plt.ylabel("Average Voltage (uV)")
     plt.show()
+
+def simple_plot(arr, sec):
+    plt.plot(arr)
+    plt.title(f"Tempo demorado por {sec} segundo(s)")
+    plt.ylabel("Time (s)")
+    plt.xlabel(f"Rodando a cada {sec}")
+    plt.show()
+
+

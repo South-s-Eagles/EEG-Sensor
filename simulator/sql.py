@@ -8,19 +8,20 @@ connection = mysql.connector.connect(
 )
 
 
-def insert_query(table: str, time: str, value: str):
-    return f"""INSERT INTO {table} (time, microvolt) 
+def insert_query(nome_sensor : str, time: str, value: str):
+    return f"""INSERT INTO algas (nome_sensor, `time`, microvolt) 
                            VALUES 
-                           ({time}, {value}) """
+                           ("{nome_sensor}", "{time}", "{value}") """
 
 
-def insert_value(time: str, value: str):
+def insert_value(nome_sensor : str, time: str, value: str):
     try:
         cursor = connection.cursor()
-        cursor.execute(insert_query("electroencephalogram", time, value))
+        cursor.execute(insert_query(nome_sensor, time, value))
         connection.commit()
-        print(cursor.rowcount, "Record inserted successfully into EEG table")
+        print(cursor.rowcount, f"Record inserted successfully into {nome_sensor}")
         cursor.close()
 
     except mysql.connector.Error as error:
         print("Failed to insert record into EEG table {}".format(error))
+        print(error)
