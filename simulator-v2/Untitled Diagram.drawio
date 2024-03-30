@@ -1,11 +1,11 @@
-<mxfile host="app.diagrams.net" modified="2024-03-30T00:13:11.030Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0" etag="6Kh1OQR4C5uDc3qJirDW" version="24.1.0" type="github">
+<mxfile host="app.diagrams.net" modified="2024-03-30T00:13:21.052Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0" etag="qaKW8k-pUwuN2G5_SADx" version="24.1.0" type="github">
   <diagram name="Page-1" id="V0QjYk44DjomA8azqZS-">
     <mxGraphModel dx="2261" dy="792" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="IBkin0WqaZqA1a8_IyNM-1" value="" style="verticalLabelPosition=bottom;aspect=fixed;html=1;shape=mxgraph.salesforce.iot;hachureGap=4;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;" vertex="1" parent="1">
-          <mxGeometry x="400" y="140" width="44" height="44" as="geometry" />
+          <mxGeometry x="250" y="90" width="44" height="44" as="geometry" />
         </mxCell>
         <mxCell id="IBkin0WqaZqA1a8_IyNM-7" value="eeg" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;" vertex="1" parent="1">
           <mxGeometry x="530" y="70" width="30" height="30" as="geometry" />
@@ -152,16 +152,16 @@
           <mxGeometry x="-80" y="428.63" width="102" height="74.25" as="geometry" />
         </mxCell>
         <mxCell id="IBkin0WqaZqA1a8_IyNM-65" value="eeg" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;" vertex="1" parent="1">
-          <mxGeometry x="407" y="100" width="30" height="30" as="geometry" />
+          <mxGeometry x="257" y="50" width="30" height="30" as="geometry" />
         </mxCell>
         <mxCell id="IBkin0WqaZqA1a8_IyNM-66" value="eeg" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;" vertex="1" parent="1">
-          <mxGeometry x="356" y="145.5" width="30" height="30" as="geometry" />
+          <mxGeometry x="206" y="95.5" width="30" height="30" as="geometry" />
         </mxCell>
         <mxCell id="IBkin0WqaZqA1a8_IyNM-67" value="eeg" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;" vertex="1" parent="1">
-          <mxGeometry x="407" y="194" width="30" height="30" as="geometry" />
+          <mxGeometry x="257" y="144" width="30" height="30" as="geometry" />
         </mxCell>
         <mxCell id="IBkin0WqaZqA1a8_IyNM-68" value="eeg" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;" vertex="1" parent="1">
-          <mxGeometry x="460" y="145.5" width="30" height="30" as="geometry" />
+          <mxGeometry x="310" y="95.5" width="30" height="30" as="geometry" />
         </mxCell>
         <mxCell id="IBkin0WqaZqA1a8_IyNM-69" value="" style="image;sketch=0;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/mscae/Azure_IoT_Hub.svg;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;" vertex="1" parent="1">
           <mxGeometry x="-250" y="440.76" width="50" height="50" as="geometry" />
