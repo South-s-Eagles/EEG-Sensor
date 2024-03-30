@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-03-30T00:12:31.497Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0" etag="HLbZddmlee5tLfYG_Jlf" version="24.1.0" type="github">
+<mxfile host="app.diagrams.net" modified="2024-03-30T00:12:41.078Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0" etag="q_0Zt-BSw1f39tYjJjw8" version="24.1.0" type="github">
   <diagram name="Page-1" id="V0QjYk44DjomA8azqZS-">
     <mxGraphModel dx="1816" dy="546" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -145,7 +145,7 @@
         <mxCell id="IBkin0WqaZqA1a8_IyNM-62" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.917;entryY=0.625;entryDx=0;entryDy=0;entryPerimeter=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;curved=1;endArrow=none;endFill=0;fillColor=#e1d5e7;strokeColor=#9673a6;" edge="1" parent="1" source="IBkin0WqaZqA1a8_IyNM-59" target="IBkin0WqaZqA1a8_IyNM-61">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="IBkin0WqaZqA1a8_IyNM-63" value="Pega a média de cada segundo (60 itens) e envia para o broker" style="rounded=0;whiteSpace=wrap;html=1;hachureGap=4;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
+        <mxCell id="IBkin0WqaZqA1a8_IyNM-63" value="Pega a média de cada segundo (60 itens) e envia para o broker, o array de heartz" style="rounded=0;whiteSpace=wrap;html=1;hachureGap=4;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
           <mxGeometry x="-80" y="428.63" width="102" height="74.25" as="geometry" />
         </mxCell>
         <mxCell id="IBkin0WqaZqA1a8_IyNM-65" value="eeg" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;" vertex="1" parent="1">
