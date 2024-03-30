@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-03-30T00:01:17.729Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0" etag="tJTESZ5b7UdLWCDCXvcF" version="24.1.0" type="github">
+<mxfile host="app.diagrams.net" modified="2024-03-30T00:01:37.461Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0" etag="m0fDWqwOEoTynhpMqRpZ" version="24.1.0" type="github">
   <diagram name="Page-1" id="V0QjYk44DjomA8azqZS-">
     <mxGraphModel dx="683" dy="377" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -25,11 +25,17 @@
         <mxCell id="IBkin0WqaZqA1a8_IyNM-7" value="eeg" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;" vertex="1" parent="1">
           <mxGeometry x="590" y="60" width="30" height="30" as="geometry" />
         </mxCell>
+        <mxCell id="IBkin0WqaZqA1a8_IyNM-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;" edge="1" parent="1" source="IBkin0WqaZqA1a8_IyNM-10" target="IBkin0WqaZqA1a8_IyNM-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="IBkin0WqaZqA1a8_IyNM-10" value="Envia os dados de microvolt" style="rounded=0;whiteSpace=wrap;html=1;hachureGap=4;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
           <mxGeometry x="567.5" y="134" width="75" height="60" as="geometry" />
         </mxCell>
         <mxCell id="IBkin0WqaZqA1a8_IyNM-12" value="Milesegundos" style="html=1;verticalLabelPosition=bottom;align=center;labelBackgroundColor=#ffffff;verticalAlign=top;strokeWidth=2;strokeColor=#0080F0;shadow=0;dashed=0;shape=mxgraph.ios7.icons.gauge;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;" vertex="1" parent="1">
           <mxGeometry x="670" y="145.5" width="32.4" height="31.5" as="geometry" />
+        </mxCell>
+        <mxCell id="IBkin0WqaZqA1a8_IyNM-13" value="" style="verticalLabelPosition=bottom;aspect=fixed;html=1;shape=mxgraph.salesforce.iot;hachureGap=4;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;" vertex="1" parent="1">
+          <mxGeometry x="583" y="250" width="44" height="44" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
