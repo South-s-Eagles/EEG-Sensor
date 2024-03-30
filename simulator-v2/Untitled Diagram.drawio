@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2024-03-30T00:13:21.052Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0" etag="qaKW8k-pUwuN2G5_SADx" version="24.1.0" type="github">
+<mxfile host="app.diagrams.net" modified="2024-03-30T02:05:44.704Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0" etag="DJ5v0A9zVifgzJ1_X-ad" version="24.1.0" type="github">
   <diagram name="Page-1" id="V0QjYk44DjomA8azqZS-">
-    <mxGraphModel dx="2261" dy="792" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1305" dy="264" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -165,6 +165,27 @@
         </mxCell>
         <mxCell id="IBkin0WqaZqA1a8_IyNM-69" value="" style="image;sketch=0;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/mscae/Azure_IoT_Hub.svg;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;" vertex="1" parent="1">
           <mxGeometry x="-250" y="440.76" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="IBkin0WqaZqA1a8_IyNM-71" value="Esse valor tem que seguir as regras de" style="rounded=0;whiteSpace=wrap;html=1;hachureGap=4;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="48" y="580" width="142" height="41.25" as="geometry" />
+        </mxCell>
+        <mxCell id="IBkin0WqaZqA1a8_IyNM-73" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=-0.012;entryY=0.601;entryDx=0;entryDy=0;entryPerimeter=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;curved=1;" edge="1" parent="1" source="IBkin0WqaZqA1a8_IyNM-63" target="IBkin0WqaZqA1a8_IyNM-71">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-29" y="600" />
+              <mxPoint x="30" y="600" />
+              <mxPoint x="30" y="605" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IBkin0WqaZqA1a8_IyNM-74" value="máximo de 20&lt;b&gt;(K)&lt;/b&gt;bytes" style="rounded=0;whiteSpace=wrap;html=1;hachureGap=4;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="64.45" y="621.25" width="109.1" height="41.25" as="geometry" />
+        </mxCell>
+        <mxCell id="IBkin0WqaZqA1a8_IyNM-76" value="máximo 2m de intervalo" style="rounded=0;whiteSpace=wrap;html=1;hachureGap=4;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="64.45" y="662.5" width="109.1" height="41.25" as="geometry" />
+        </mxCell>
+        <mxCell id="IBkin0WqaZqA1a8_IyNM-77" value="Queda de 1% de bateria por transmissão" style="rounded=0;whiteSpace=wrap;html=1;hachureGap=4;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="64.45" y="703.75" width="109.1" height="41.25" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
