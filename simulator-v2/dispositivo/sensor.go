@@ -1,6 +1,9 @@
 package dispositivo
 
-import "math/rand"
+import (
+	"fmt"
+	"math/rand"
+)
 
 // O sensor Eletrodo é apenas o sensor,
 // ele tem a função apenas de capturar
@@ -11,7 +14,27 @@ type Sensor struct {
 	Posicao string // posicão do cérebro que está o sensor
 }
 
-func (s *Sensor) generateValue() {
-	s.Valor = int8(rand.Intn(11))
-	s.Posicao = "Posicao 1"
+// Função construtora para criar e inicializar um Sensor
+func NewSensor() *Sensor {
+	sensor := &Sensor{}
+	sensor.gerarValores(int8(rand.Intn(11)))
+	return sensor
+}
+
+func criarSensoresEmLote(quantidade int) []Sensor {
+	sensores := make([]Sensor, quantidade)
+	for i := 0; i < quantidade; i++ {
+		sensores[i] = *NewSensor()
+	}
+	return sensores
+}
+
+// Função para gerar valores aleatórios para o sensor
+func (s *Sensor) gerarValores(value int8) {
+	s.Valor = value
+	s.Posicao = fmt.Sprintf("Posicao %d", value)
+}
+
+func (s Sensor) toString() string {
+	return fmt.Sprintf("Posicao: %s\nValor: %d", s.Posicao, s.Valor)
 }

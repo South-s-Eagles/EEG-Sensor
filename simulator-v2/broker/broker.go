@@ -1,46 +1,46 @@
+// Responsável pela conexão com azure IOTHUB.
+// Tem a inteligência de conseguir se conectar com
+// a Azure e enviar mensagem para o broker.
 package broker
 
 import (
 	"context"
+	"errors"
 	"log"
+	"sync"
 
 	"github.com/amenzhinsky/iothub/iotdevice"
 	iotmqtt "github.com/amenzhinsky/iothub/iotdevice/transport/mqtt"
 )
 
-//	func main() {
-//		ctx := context.Background()
-//
-//		// Configurar credenciais para Azure
-//		cred, err := azidentity.NewDefaultAzureCredential(nil)
-//		if err != nil {
-//			panic(err)
-//		}
-//
-//		clientFactory, err := armiothub.NewClientFactory("HostName=ivan02221071.azure-devices.net;DeviceId=ivan02221071;SharedAccessKey=WgwvQTOkaRNUdYoD8cS2HnDZcQXkgyBDTAIoTAVFArg=", cred, nil)
-//		if err != nil {
-//			panic(err)
-//		}
-//
-//		client := clientFactory.GetIoTHubClient()
-//
-//		fmt.Println(client)
-//	}
-func main() {
-	c, err := iotdevice.NewFromConnectionString(
-		iotmqtt.New(), "HostName=ivan02221071.azure-devices.net;DeviceId=ivan02221071;SharedAccessKey=WgwvQTOkaRNUdYoD8cS2HnDZcQXkgyBDTAIoTAVFArg=",
-	)
-	if err != nil {
-		log.Fatal(err)
+// AzureBroker representa o cliente do broker do Azure IoT Hub.
+type AzureBroker struct {
+	client *iotdevice.Client
+	once   sync.Once
+}
+
+// Cria uma nova instância de AzureBroker.
+func NewAzureBroker(connectionString string) (*AzureBroker, error) {
+	broker := &AzureBroker{}
+	var err error
+	broker.once.Do(func() {
+		broker.client, err = iotdevice.NewFromConnectionString(iotmqtt.New(), connectionString)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		if err = broker.client.Connect(context.Background()); err != nil {
+			log.Fatal(err)
+		}
+	})
+	return broker, err
+}
+
+// Envia uma mensagem para o IoT Hub.
+func (b *AzureBroker) SendMessage(message []byte) error {
+	if b.client == nil {
+		return errors.New("conexão com o broker não inicializada")
 	}
 
-	// connect to the iothub
-	if err = c.Connect(context.Background()); err != nil {
-		log.Fatal(err)
-	}
-
-	// send a device-to-cloud message
-	if err = c.SendEvent(context.Background(), []byte(`hello`)); err != nil {
-		log.Fatal(err)
-	}
+	return b.client.SendEvent(context.Background(), message)
 }
