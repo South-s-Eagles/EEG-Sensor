@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-03-30T00:01:08.294Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0" etag="_sLHz9wSYNmAyhKTUnRT" version="24.1.0" type="github">
+<mxfile host="app.diagrams.net" modified="2024-03-30T00:01:17.729Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0" etag="tJTESZ5b7UdLWCDCXvcF" version="24.1.0" type="github">
   <diagram name="Page-1" id="V0QjYk44DjomA8azqZS-">
     <mxGraphModel dx="683" dy="377" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -29,7 +29,7 @@
           <mxGeometry x="567.5" y="134" width="75" height="60" as="geometry" />
         </mxCell>
         <mxCell id="IBkin0WqaZqA1a8_IyNM-12" value="Milesegundos" style="html=1;verticalLabelPosition=bottom;align=center;labelBackgroundColor=#ffffff;verticalAlign=top;strokeWidth=2;strokeColor=#0080F0;shadow=0;dashed=0;shape=mxgraph.ios7.icons.gauge;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;" vertex="1" parent="1">
-          <mxGeometry x="690" y="115.5" width="32.4" height="31.5" as="geometry" />
+          <mxGeometry x="670" y="145.5" width="32.4" height="31.5" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
