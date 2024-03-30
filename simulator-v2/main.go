@@ -1,33 +1,57 @@
 package main
 
 import (
-	"encoding/json"
+	"context"
 	"fmt"
+	"log"
+	"time"
+
+	"github.com/amenzhinsky/iothub/iotdevice"
+	iotmqtt "github.com/amenzhinsky/iothub/iotdevice/transport/mqtt"
 )
 
-type Pessoa struct {
-	Nome  string `json:"nome"`
-	Idade int    `json:"idade"`
-	dade  int    `json:"idade"`
-	dde   int    `json:"idade"`
-	de    int    `json:"idade"`
-}
+//	func main() {
+//		ctx := context.Background()
+//
+//		// Configurar credenciais para Azure
+//		cred, err := azidentity.NewDefaultAzureCredential(nil)
+//		if err != nil {
+//			panic(err)
+//		}
+//
+//		clientFactory, err := armiothub.NewClientFactory("HostName=ivan02221071.azure-devices.net;DeviceId=ivan02221071;SharedAccessKey=WgwvQTOkaRNUdYoD8cS2HnDZcQXkgyBDTAIoTAVFArg=", cred, nil)
+//		if err != nil {
+//			panic(err)
+//		}
+//
+//		client := clientFactory.GetIoTHubClient()
+//
+//		fmt.Println(client)
+//	}
+const (
+	secondsMultiplier = 1000000000
+	sleepTime         = 2 * secondsMultiplier
+)
 
 func main() {
-	pessoa := Pessoa{
-		Nome:  "João",
-		Idade: 30,
-		dade:  30,
-		dde:   30,
-		de:    30,
-	}
-
-	jsonData, err := json.Marshal(pessoa)
+	c, err := iotdevice.NewFromConnectionString(
+		iotmqtt.New(), "HostName=ivan02221071.azure-devices.net;DeviceId=ivan02221071;SharedAccessKey=WgwvQTOkaRNUdYoD8cS2HnDZcQXkgyBDTAIoTAVFArg=",
+	)
 	if err != nil {
-		fmt.Println("Erro ao converter para JSON:", err)
-		return
+		log.Fatal(err)
 	}
 
-	fmt.Printf("Tamanho do test Test (teste): %d bytes\n", len(jsonData))
-	fmt.Println(string(jsonData))
+	// connect to the iothub
+	if err = c.Connect(context.Background()); err != nil {
+		log.Fatal(err)
+	}
+
+	// send a device-to-cloud message
+	for {
+		if err = c.SendEvent(context.Background(), []byte(`hello`)); err != nil {
+			log.Fatal(err)
+		}
+		fmt.Println("Enviado")
+		time.Sleep(sleepTime)
+	}
 }
