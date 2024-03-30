@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-03-30T00:09:31.299Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0" etag="i6xXCFjhYET7yxAUAdM5" version="24.1.0" type="github">
+<mxfile host="app.diagrams.net" modified="2024-03-30T00:09:48.415Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0" etag="_uvZ9u7iQwPDGsSVgszy" version="24.1.0" type="github">
   <diagram name="Page-1" id="V0QjYk44DjomA8azqZS-">
     <mxGraphModel dx="819" dy="453" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -141,6 +141,12 @@
               <mxPoint x="341" y="412" />
             </Array>
           </mxGeometry>
+        </mxCell>
+        <mxCell id="IBkin0WqaZqA1a8_IyNM-59" value="1 minuto dps" style="html=1;verticalLabelPosition=bottom;align=center;labelBackgroundColor=#ffffff;verticalAlign=top;strokeWidth=2;strokeColor=#0080F0;shadow=0;dashed=0;shape=mxgraph.ios7.icons.gauge;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;" vertex="1" parent="1">
+          <mxGeometry x="100.00000000000011" y="450" width="32.4" height="31.5" as="geometry" />
+        </mxCell>
+        <mxCell id="IBkin0WqaZqA1a8_IyNM-60" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.948;entryY=0.522;entryDx=0;entryDy=0;entryPerimeter=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;" edge="1" parent="1" source="IBkin0WqaZqA1a8_IyNM-45" target="IBkin0WqaZqA1a8_IyNM-59">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
