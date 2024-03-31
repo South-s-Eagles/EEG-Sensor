@@ -2,10 +2,13 @@
 // ser usadas fora do contexto de algum struct em si
 package commons
 
-import "math"
+import (
+	"math"
+)
 
 const (
-	samplingFrequency = 1000 // Frequência de amostragem em Hz
+	amostraDaFrequencia       = 10 // Frequência de amostragem em Hz
+	arredondamentoDaAmplitude = 10 // O quando vai arredondar a amplitude
 )
 
 // Função para calcular a Transformada de Fourier e encontrar a frequência dominante
@@ -30,9 +33,18 @@ func FrequenciaDominante(microvolts []int8) (freqDominante float64, maxAmplitude
 		amplitude := math.Sqrt(real[k]*real[k] + imag[k]*imag[k])
 		if amplitude > maxAmplitude {
 			maxAmplitude = amplitude
-			freqDominante = float64(k) * (samplingFrequency / float64(N))
 		}
+		freqDominante = float64(k) * (amostraDaFrequencia / float64(N))
 	}
 
-	return freqDominante, maxAmplitude
+	return freqDominante, maxAmplitude / arredondamentoDaAmplitude
+}
+
+func CalcularMedia(arr []int8) (media float32) {
+	var soma int
+	for _, v := range arr {
+		soma += int(v)
+	}
+	media = float32(soma) / float32(len(arr))
+	return media
 }

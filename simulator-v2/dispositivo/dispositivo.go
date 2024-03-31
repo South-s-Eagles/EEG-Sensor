@@ -6,6 +6,7 @@ package dispositivo
 import (
 	"errors"
 	"fmt"
+	"math/rand"
 	"sync"
 	"time"
 
@@ -84,11 +85,19 @@ func (d *Dispositivo) desligarDevice() {
 	d.Ligado = false
 }
 
-// Simula o dispositivo ligado
 func (d *Dispositivo) Run() {
 	var wg sync.WaitGroup
 	var lock sync.Mutex
 	var totalData [][]int8
+
+	timeout := false
+	var timeoutMutex sync.Mutex
+
+	time.AfterFunc(time.Second, func() {
+		timeoutMutex.Lock()
+		timeout = true
+		timeoutMutex.Unlock()
+	})
 
 	for _, sensor := range d.Sensores {
 		wg.Add(1)
@@ -96,10 +105,18 @@ func (d *Dispositivo) Run() {
 			defer wg.Done()
 
 			var data []int8
-			for i := 0; i < 1000; i++ {
+
+			for {
+				timeoutMutex.Lock()
+				if timeout {
+					timeoutMutex.Unlock()
+					break
+				}
+				timeoutMutex.Unlock()
+
 				s.gerarValor()
 				data = append(data, s.Valor)
-				time.Sleep(1 * time.Millisecond)
+				time.Sleep(time.Duration(rand.Intn(100)) * time.Millisecond)
 			}
 
 			lock.Lock()
@@ -110,9 +127,18 @@ func (d *Dispositivo) Run() {
 
 	wg.Wait()
 
-	for i, data := range totalData {
+	var arrFreq []int8
+	var arrAmp []int8
+
+	for _, data := range totalData {
 		freq, amp := commons.FrequenciaDominante(data)
-		fmt.Printf("Frequência do sensor %d: %f\n", i, freq)
-		fmt.Printf("Amplitude do sensor %d: %f\n", i, amp)
+		arrFreq = append(arrFreq, int8(freq))
+		arrAmp = append(arrAmp, int8(amp))
 	}
+
+	d.Frequencia = commons.CalcularMedia(arrFreq)
+	d.Amplitude = commons.CalcularMedia(arrAmp)
+
+	fmt.Printf("Frequência do sensor %f\n", d.Frequencia)
+	fmt.Printf("Amplitude do sensor %f\n", d.Amplitude)
 }
