@@ -1,7 +1,7 @@
 package main
 
 import (
-	_ "time"
+	"time"
 
 	_ "github.com/South-s-Eagles/EEG-electroencephalogram/broker"
 	"github.com/South-s-Eagles/EEG-electroencephalogram/dispositivo"
@@ -19,5 +19,8 @@ func main() {
 		panic(err)
 	}
 
-	d.ListarSensores()
+	for {
+		d.Run()
+		time.Sleep(1 * time.Second)
+	}
 }

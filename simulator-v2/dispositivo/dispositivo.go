@@ -30,7 +30,7 @@ func (d *Dispositivo) ListarSensores() {
 	}
 }
 
-// Criar um novo dispositivo
+// Criar um novo dispositivo com a quantidade de sensor passada
 func NewDispositivo(sensorQtd int8) (*Dispositivo, error) {
 	if sensorQtd > 10 {
 		return nil, errors.New("não é possível criar um dispositivo com mais de 10 sensores")
@@ -82,4 +82,8 @@ func (d *Dispositivo) validarBateria() error {
 // Desliga o dispositivo
 func (d *Dispositivo) desligarDevice() {
 	d.Ligado = false
+}
+
+// Simula o dispositivo ligado
+func (d *Dispositivo) Run() {
 }

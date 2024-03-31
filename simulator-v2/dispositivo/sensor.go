@@ -5,6 +5,8 @@ import (
 	"math/rand"
 )
 
+const maxVoltage = 10
+
 // O sensor Eletrodo é apenas o sensor,
 // ele tem a função apenas de capturar
 // os dados (corrente elétrica) em
@@ -17,10 +19,12 @@ type Sensor struct {
 // Função construtora para criar e inicializar um Sensor
 func NewSensor() *Sensor {
 	sensor := &Sensor{}
-	sensor.gerarValores(int8(rand.Intn(11)))
+	sensor.Valor = 0
+	sensor.Posicao = "Nil"
 	return sensor
 }
 
+// Cria o sensor em lote de acordo com a quantidade passada
 func criarSensoresEmLote(quantidade int) []Sensor {
 	sensores := make([]Sensor, quantidade)
 	for i := 0; i < quantidade; i++ {
@@ -30,11 +34,11 @@ func criarSensoresEmLote(quantidade int) []Sensor {
 }
 
 // Função para gerar valores aleatórios para o sensor
-func (s *Sensor) gerarValores(value int8) {
-	s.Valor = value
-	s.Posicao = fmt.Sprintf("Posicao %d", value)
+func (s *Sensor) gerarValores() {
+	s.Valor = int8(rand.Intn(maxVoltage + 1))
 }
 
+// Formatar toString da struct
 func (s Sensor) toString() string {
 	return fmt.Sprintf("Posicao: %s\nValor: %d", s.Posicao, s.Valor)
 }
