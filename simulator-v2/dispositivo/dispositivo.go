@@ -17,29 +17,29 @@ type Dispositivo struct {
 	Bateria    float32  // Quantidade de bateria em porcentagem
 	Frequencia float32  // Valor em hz da Frequencia da corrente elétrica
 	Amplitude  float32  // Valor da Amplitude da onda da corrente elétrica
-	ligado     bool     // Estado do Dispositivo se está ligado ou desligado
+	Ligado     bool     // Estado do Dispositivo se está ligado ou desligado
 }
 
 // Lista todos os sensores no dispositivo
-func (d *Dispositivo) listarSensores() {
-	for i, v := range d.Sensores {
-		fmt.Printf("Sensor: %d, %s", i, v.toString())
+func (d *Dispositivo) ListarSensores() {
+	for _, v := range d.Sensores {
+		fmt.Println(v.toString())
 	}
 }
 
-func NewDispositivo(sensorQtd int8) (Dispositivo, error) {
-	// if sensorQtd > 10 {
-	// 	return nil, errors.New("não é possível criar um dispositivo com mais de 10 sensores")
-	// }
+func NewDispositivo(sensorQtd int8) (*Dispositivo, error) {
+	if sensorQtd > 10 {
+		return nil, errors.New("não é possível criar um dispositivo com mais de 10 sensores")
+	}
 
 	sensores := criarSensoresEmLote(int(sensorQtd))
 
-	d := Dispositivo{
+	d := &Dispositivo{
 		Sensores:   sensores,
 		Bateria:    100.0,
 		Frequencia: 0,
 		Amplitude:  0,
-		ligado:     true,
+		Ligado:     true,
 	}
 
 	return d, nil
@@ -69,7 +69,7 @@ func (d *Dispositivo) reduzirBateria(value float32) {
 // Validar a vida da bateria.
 func (d *Dispositivo) validarBateria() error {
 	if d.Bateria <= 0 {
-		d.ligado = false
+		d.Ligado = false
 		return errors.New("bateria descarregada")
 	}
 	return nil
@@ -77,5 +77,5 @@ func (d *Dispositivo) validarBateria() error {
 
 // Desliga o dispositivo
 func (d *Dispositivo) desligarDevice() {
-	d.ligado = false
+	d.Ligado = false
 }

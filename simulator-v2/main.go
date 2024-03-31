@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	_ "time"
 
 	_ "github.com/South-s-Eagles/EEG-electroencephalogram/broker"
@@ -15,11 +14,10 @@ const (
 )
 
 func main() {
-	d, err := dispositivo.NewDispositivo(1)
+	d, err := dispositivo.NewDispositivo(10)
 	if err != nil {
 		panic(err)
 	}
 
-	// Chame a função listarSensores no valor do tipo Dispositivo
-	fmt.Println(d.Amplitude)
+	d.ListarSensores()
 }
