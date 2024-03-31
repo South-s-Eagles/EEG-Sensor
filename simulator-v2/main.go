@@ -16,5 +16,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	d.Run()
+	for {
+		d.Run()
+	}
 }
