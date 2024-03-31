@@ -6,6 +6,10 @@ package dispositivo
 import (
 	"errors"
 	"fmt"
+	"sync"
+	"time"
+
+	"github.com/South-s-Eagles/EEG-electroencephalogram/commons"
 )
 
 // Dispositivo em si do EEG
@@ -49,10 +53,6 @@ func NewDispositivo(sensorQtd int8) (*Dispositivo, error) {
 	return d, nil
 }
 
-// TODO: Transforma os dados recebidos em hz
-func (d *Dispositivo) transformarParaHeartz(uV ...float64) {
-}
-
 // Envia os dados em heartz recebidos para o broker
 // NOTE: Sera que faz sentido isso aqui ainda?
 func (d *Dispositivo) enviarMensagem(arr []byte) {
@@ -86,4 +86,32 @@ func (d *Dispositivo) desligarDevice() {
 
 // Simula o dispositivo ligado
 func (d *Dispositivo) Run() {
+	var wg sync.WaitGroup
+	var lock sync.Mutex
+	var totalData [][]int8
+
+	for _, sensor := range d.Sensores {
+		wg.Add(1)
+		go func(s Sensor) {
+			defer wg.Done()
+
+			var data []int8
+			for i := 0; i < 1000; i++ {
+				s.gerarValor()
+				data = append(data, s.Valor)
+				time.Sleep(1 * time.Millisecond)
+			}
+
+			lock.Lock()
+			defer lock.Unlock()
+			totalData = append(totalData, data)
+		}(sensor)
+	}
+
+	wg.Wait()
+
+	for i, data := range totalData {
+		frequencia := commons.ParaFrequenciaEmHeartz(data)
+		fmt.Printf("Frequência do sensor %d: %f\n", i, frequencia)
+	}
 }

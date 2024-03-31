@@ -1,8 +1,6 @@
 package main
 
 import (
-	"time"
-
 	_ "github.com/South-s-Eagles/EEG-electroencephalogram/broker"
 	"github.com/South-s-Eagles/EEG-electroencephalogram/dispositivo"
 )
@@ -14,13 +12,9 @@ const (
 )
 
 func main() {
-	d, err := dispositivo.NewDispositivo(10)
+	d, err := dispositivo.NewDispositivo(8)
 	if err != nil {
 		panic(err)
 	}
-
-	for {
-		d.Run()
-		time.Sleep(1 * time.Second)
-	}
+	d.Run()
 }

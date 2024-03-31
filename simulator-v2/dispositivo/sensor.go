@@ -33,8 +33,9 @@ func criarSensoresEmLote(quantidade int) []Sensor {
 	return sensores
 }
 
-// Função para gerar valores aleatórios para o sensor
-func (s *Sensor) gerarValores() {
+// Função para gerar valores aleatórios para o sensor simulado de EEG
+func (s *Sensor) gerarValor() {
+	// Simulação de uma leitura de sensor em microvolts
 	s.Valor = int8(rand.Intn(maxVoltage + 1))
 }
 
