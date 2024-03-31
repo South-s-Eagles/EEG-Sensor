@@ -10,8 +10,8 @@ import (
 // os dados (corrente elétrica) em
 // uV (microvolts) e enviar para o Dispositivo
 type Sensor struct {
-	Valor   int8   // Valor em microvolt da corrente elétrica
-	Posicao string // posicão do cérebro que está o sensor
+	Valor   int8   `json:"valor"`   // Valor em microvolt da corrente elétrica
+	Posicao string `json:"posicao"` // posicão do cérebro que está o sensor
 }
 
 // Função construtora para criar e inicializar um Sensor

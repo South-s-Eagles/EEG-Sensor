@@ -1,3 +1,6 @@
+// Struct do dispositivo
+// tem todos os componentes do dispositivo
+// tanto os sensores quando os dispositivo IOT si
 package dispositivo
 
 import (
@@ -13,11 +16,11 @@ import (
 // recebidos pelo sensor e guardar para enviar com
 // calma para o broker (IOT HUB)
 type Dispositivo struct {
-	Sensores   []Sensor // Sensores que existem no Dispositivo
-	Bateria    float32  // Quantidade de bateria em porcentagem
-	Frequencia float32  // Valor em hz da Frequencia da corrente elétrica
-	Amplitude  float32  // Valor da Amplitude da onda da corrente elétrica
-	Ligado     bool     // Estado do Dispositivo se está ligado ou desligado
+	Sensores   []Sensor `json:"sensores"`   // Sensores que existem no Dispositivo
+	Bateria    float32  `json:"bateria"`    // Quantidade de bateria em porcentagem
+	Frequencia float32  `json:"frequencia"` // Valor em hz da Frequencia da corrente elétrica
+	Amplitude  float32  `json:"Amplitude"`  // Valor da Amplitude da onda da corrente elétrica
+	Ligado     bool     `json:"ligado"`     // Estado do Dispositivo se está ligado ou desligado
 }
 
 // Lista todos os sensores no dispositivo
@@ -27,6 +30,7 @@ func (d *Dispositivo) ListarSensores() {
 	}
 }
 
+// Criar um novo dispositivo
 func NewDispositivo(sensorQtd int8) (*Dispositivo, error) {
 	if sensorQtd > 10 {
 		return nil, errors.New("não é possível criar um dispositivo com mais de 10 sensores")
