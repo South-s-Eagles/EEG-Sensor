@@ -111,7 +111,8 @@ func (d *Dispositivo) Run() {
 	wg.Wait()
 
 	for i, data := range totalData {
-		frequencia := commons.ParaFrequenciaEmHeartz(data)
-		fmt.Printf("Frequência do sensor %d: %f\n", i, frequencia)
+		freq, amp := commons.FrequenciaDominante(data)
+		fmt.Printf("Frequência do sensor %d: %f\n", i, freq)
+		fmt.Printf("Amplitude do sensor %d: %f\n", i, amp)
 	}
 }
