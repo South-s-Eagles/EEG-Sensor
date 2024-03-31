@@ -8,7 +8,7 @@ import (
 const (
 	sleepTime = 2
 	// NOTE: Colocar aqui para pegar de env de ambiente.
-	azToken = "HostName=ivan02221071.azure-devices.net;DeviceId=ivan02221071;SharedAccessKey=WgwvQTOkaRNUdYoD8cS2HnDZcQXkgyBDTAIoTAVFArg="
+	azToken = ""
 )
 
 func main() {
