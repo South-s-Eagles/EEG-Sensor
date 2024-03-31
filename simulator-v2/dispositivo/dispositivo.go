@@ -86,6 +86,10 @@ func (d *Dispositivo) desligarDevice() {
 }
 
 func (d *Dispositivo) Run() {
+	if d.Bateria <= 0 {
+		panic("Dispositivo sem bateria")
+	}
+
 	var wg sync.WaitGroup
 	var lock sync.Mutex
 	var totalData [][]int8
