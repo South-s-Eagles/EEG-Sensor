@@ -142,7 +142,4 @@ func (d *Dispositivo) Run() {
 
 	d.Frequencia = commons.CalcularMedia(arrFreq)
 	d.Amplitude = commons.CalcularMedia(arrAmp)
-
-	fmt.Printf("Frequência do sensor %f\n", d.Frequencia)
-	fmt.Printf("Amplitude do sensor %f\n", d.Amplitude)
 }
