@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"github.com/South-s-Eagles/EEG-electroencephalogram/commons"
+	"github.com/oklog/ulid/v2"
 )
 
 // Dispositivo em si do EEG
@@ -21,6 +22,7 @@ import (
 // recebidos pelo sensor e guardar para enviar com
 // calma para o broker (IOT HUB)
 type Dispositivo struct {
+	ID         string   `json:"id"`         // Id do device
 	Sensores   []Sensor `json:"sensores"`   // Sensores que existem no Dispositivo
 	Bateria    float32  `json:"bateria"`    // Quantidade de bateria em porcentagem
 	Frequencia float32  `json:"frequencia"` // Valor em hz da Frequencia da corrente elétrica
@@ -30,6 +32,7 @@ type Dispositivo struct {
 
 // Lista todos os sensores no dispositivo
 func (d *Dispositivo) ListarSensores() {
+	fmt.Println(d.ID)
 	for _, v := range d.Sensores {
 		fmt.Println(v.toString())
 	}
@@ -44,6 +47,7 @@ func NewDispositivo(sensorQtd int8) (*Dispositivo, error) {
 	sensores := criarSensoresEmLote(int(sensorQtd))
 
 	d := &Dispositivo{
+		ID:         ulid.Make().String(),
 		Sensores:   sensores,
 		Bateria:    100.0,
 		Frequencia: 0,
