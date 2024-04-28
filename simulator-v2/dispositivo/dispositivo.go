@@ -124,7 +124,7 @@ func (d *Dispositivo) Run() {
 
 				s.gerarValor()
 				data = append(data, s.Valor)
-				time.Sleep(time.Duration(rand.Intn(100)) * time.Millisecond)
+				time.Sleep(time.Duration(rand.Intn(1000)) * time.Millisecond)
 			}
 
 			lock.Lock()

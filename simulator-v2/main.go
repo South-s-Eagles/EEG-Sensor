@@ -7,24 +7,25 @@ import (
 	"time"
 
 	"github.com/South-s-Eagles/EEG-electroencephalogram/aws"
-	"github.com/South-s-Eagles/EEG-electroencephalogram/broker"
-	_ "github.com/South-s-Eagles/EEG-electroencephalogram/broker"
 	"github.com/South-s-Eagles/EEG-electroencephalogram/dispositivo"
 )
 
 const (
 	sleepTime     = 2
-	azToken       = "HostName=EEG-Simulator.azure-devices.net;DeviceId=eeg-simulator;SharedAccessKey=sxX+gQDWSpkpFbNfZ8xa1rifHRlO8n96aAIoTLnFe4I="
-	dataRetention = 5 * time.Minute
+	azToken       = ""
+	dataRetention = 5 * time.Second
 )
+
+type ExternalPayload struct {
+	DispositivoId     string `json:"dispositivoId"`
+	Dispositivo       string `json:"dispositivo"`
+	Valor             int16  `json:"valor"`
+	UnidadeMedida     string `json:"unidadeMedida"`
+	ConteudoAdicional string `json:"conteudoAdicional"`
+}
 
 func main() {
 	client := aws.Client()
-
-	azr, err := broker.NewAzureBroker(azToken)
-	if err != nil {
-		panic(err)
-	}
 
 	d, err := dispositivo.NewDispositivo(8)
 	if err != nil {
@@ -43,15 +44,30 @@ func main() {
 			case newData := <-dataChan:
 				dataBuffer = append(dataBuffer, newData)
 			case <-timer.C:
-				payload, err := json.Marshal(dataBuffer)
+				fmt.Println("Enviando os dados para armazenamento")
+				devicePayload, err := json.Marshal(dataBuffer)
 				if err != nil {
-					fmt.Println("Erro ao serializar os dados:", err)
+					fmt.Println("Erro ao serializar devicePayload:", err)
 					continue
 				}
-				azr.SendMessage(payload)
-				err = client.SendObject(context.TODO(), dataBuffer[len(dataBuffer)-1].ID, payload)
+
+				externalPayload := &ExternalPayload{
+					DispositivoId:     dataBuffer[len(dataBuffer)-1].ID,
+					Dispositivo:       "electroencephalogram",
+					Valor:             10,
+					UnidadeMedida:     "Hz",
+					ConteudoAdicional: string(devicePayload),
+				}
+
+				externalPayloadJson, err := json.Marshal(externalPayload)
 				if err != nil {
-					fmt.Println("Erro ao enviar dados para o S3:", err)
+					fmt.Println("Erro ao serializar externalPayload:", err)
+					continue
+				}
+
+				err = client.SendObject(context.TODO(), dataBuffer[len(dataBuffer)-1].ID, externalPayloadJson)
+				if err != nil {
+					fmt.Println(err)
 				}
 
 				dataBuffer = nil
@@ -63,9 +79,6 @@ func main() {
 
 	for {
 		d.Run()
-
-		fmt.Println(d.Amplitude)
-		fmt.Println(d.Frequencia)
 
 		dataChan <- d
 

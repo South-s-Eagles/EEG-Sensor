@@ -58,5 +58,8 @@ func (w *S3ClientWrapper) SendObject(ctx context.Context, id string, data []byte
 	if err != nil {
 		return fmt.Errorf("falha ao enviar objeto para o bucket S3: %v", err)
 	}
+
+	fmt.Printf("Objeto %s enviado com sucesso para o S3", string(data))
+
 	return nil
 }
