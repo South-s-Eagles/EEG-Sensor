@@ -4,10 +4,14 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"log"
+	"os"
 	"time"
 
-	"github.com/South-s-Eagles/EEG-electroencephalogram/aws"
+	_ "github.com/South-s-Eagles/EEG-electroencephalogram/aws"
+	"github.com/South-s-Eagles/EEG-electroencephalogram/database"
 	"github.com/South-s-Eagles/EEG-electroencephalogram/dispositivo"
+	"github.com/joho/godotenv"
 )
 
 const (
@@ -25,7 +29,15 @@ type ExternalPayload struct {
 }
 
 func main() {
-	client := aws.Client()
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Não foi possível carregar .env file:", err)
+	}
+
+	databaseName := os.Getenv("DATABASE_NAME")
+	colletionName := os.Getenv("DATABASE_COLLECTION_NAME")
+	databaseClient := database.ConnectorClient()
+	coll := databaseClient.Database(databaseName).Collection(colletionName)
 
 	d, err := dispositivo.NewDispositivo(8)
 	if err != nil {
@@ -59,15 +71,12 @@ func main() {
 					ConteudoAdicional: string(devicePayload),
 				}
 
-				externalPayloadJson, err := json.Marshal(externalPayload)
+				res, err := coll.InsertOne(context.Background(), externalPayload)
 				if err != nil {
-					fmt.Println("Erro ao serializar externalPayload:", err)
-					continue
-				}
-
-				err = client.SendObject(context.TODO(), dataBuffer[len(dataBuffer)-1].ID, externalPayloadJson)
-				if err != nil {
+					fmt.Println("Erro ocorreu para mandar os dados para o database")
 					fmt.Println(err)
+				} else {
+					fmt.Println(res)
 				}
 
 				dataBuffer = nil
