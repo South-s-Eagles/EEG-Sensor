@@ -39,7 +39,7 @@ func (s *Sensor) gerarValor() {
 	s.Valor = int8(rand.Intn(maxVoltage + 1))
 }
 
-// Formatar toString da struct
-func (s Sensor) toString() string {
+// Formatar String da struct
+func (s Sensor) String() string {
 	return fmt.Sprintf("Posicao: %s\nValor: %d", s.Posicao, s.Valor)
 }

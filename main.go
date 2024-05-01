@@ -4,20 +4,17 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"log"
-	"os"
 	"time"
 
-	_ "github.com/South-s-Eagles/EEG-electroencephalogram/aws"
 	"github.com/South-s-Eagles/EEG-electroencephalogram/database"
 	"github.com/South-s-Eagles/EEG-electroencephalogram/dispositivo"
-	"github.com/joho/godotenv"
+	"go.mongodb.org/mongo-driver/mongo"
 )
 
 const (
 	sleepTime     = 2
-	azToken       = ""
 	dataRetention = 5 * time.Second
+	maxRetries    = 3
 )
 
 type ExternalPayload struct {
@@ -29,68 +26,69 @@ type ExternalPayload struct {
 }
 
 func main() {
-	err := godotenv.Load()
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+
+	databaseClient, err := database.NewMongoClient(ctx)
 	if err != nil {
-		log.Fatal("Não foi possível carregar .env file:", err)
+		panic(err)
 	}
+	defer databaseClient.Database().Client().Disconnect(ctx)
 
-	databaseName := os.Getenv("DATABASE_NAME")
-	colletionName := os.Getenv("DATABASE_COLLECTION_NAME")
-	databaseClient := database.ConnectorClient()
-	coll := databaseClient.Database(databaseName).Collection(colletionName)
-
-	d, err := dispositivo.NewDispositivo(8)
+	device, err := dispositivo.NewDispositivo(8)
 	if err != nil {
 		panic(err)
 	}
 
 	dataChan := make(chan *dispositivo.Dispositivo)
 
-	go func() {
-		var dataBuffer []*dispositivo.Dispositivo
-		timer := time.NewTimer(dataRetention)
-		defer timer.Stop()
-
-		for {
-			select {
-			case newData := <-dataChan:
-				dataBuffer = append(dataBuffer, newData)
-			case <-timer.C:
-				fmt.Println("Enviando os dados para armazenamento")
-				devicePayload, err := json.Marshal(dataBuffer)
-				if err != nil {
-					fmt.Println("Erro ao serializar devicePayload:", err)
-					continue
-				}
-
-				externalPayload := &ExternalPayload{
-					DispositivoId:     dataBuffer[len(dataBuffer)-1].ID,
-					Dispositivo:       "electroencephalogram",
-					Valor:             10,
-					UnidadeMedida:     "Hz",
-					ConteudoAdicional: string(devicePayload),
-				}
-
-				res, err := coll.InsertOne(context.Background(), externalPayload)
-				if err != nil {
-					fmt.Println("Erro ocorreu para mandar os dados para o database")
-					fmt.Println(err)
-				} else {
-					fmt.Println(res)
-				}
-
-				dataBuffer = nil
-
-				timer.Reset(dataRetention)
-			}
-		}
-	}()
+	go sendDataToDatabase(ctx, dataChan, databaseClient)
 
 	for {
-		d.Run()
+		device.Run()
 
-		dataChan <- d
+		select {
+		case <-ctx.Done():
+			return
+		case dataChan <- device:
+		}
 
 		time.Sleep(sleepTime * time.Second)
+	}
+}
+
+func sendDataToDatabase(ctx context.Context, dataChan <-chan *dispositivo.Dispositivo, client *mongo.Collection) {
+	var dataBuffer []*dispositivo.Dispositivo
+	timer := time.NewTimer(dataRetention)
+	defer timer.Stop()
+
+	for {
+		select {
+		case <-ctx.Done():
+			return
+		case newData := <-dataChan:
+			dataBuffer = append(dataBuffer, newData)
+		case <-timer.C:
+			fmt.Println("Enviando os dados para armazenamento")
+
+			devicePayload, err := json.Marshal(dataBuffer)
+			if err != nil {
+				fmt.Println("Erro ao serializar devicePayload:", err)
+				continue
+			}
+
+			payload := &ExternalPayload{
+				DispositivoId:     dataBuffer[len(dataBuffer)-1].ID,
+				Dispositivo:       "electroencephalogram",
+				Valor:             10,
+				UnidadeMedida:     "Hz",
+				ConteudoAdicional: string(devicePayload),
+			}
+
+			client.InsertOne(ctx, payload)
+
+			dataBuffer = nil
+			timer.Reset(dataRetention)
+		}
 	}
 }

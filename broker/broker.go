@@ -6,7 +6,7 @@ package broker
 import (
 	"context"
 	"errors"
-	"log"
+	"fmt"
 	"sync"
 
 	"github.com/amenzhinsky/iothub/iotdevice"
@@ -19,21 +19,31 @@ type AzureBroker struct {
 	once   sync.Once
 }
 
-// Cria uma nova instância de AzureBroker.
+// NewAzureBroker cria uma nova instância de AzureBroker.
 func NewAzureBroker(connectionString string) (*AzureBroker, error) {
 	broker := &AzureBroker{}
-	var err error
+	var initErr error
+
 	broker.once.Do(func() {
-		broker.client, err = iotdevice.NewFromConnectionString(iotmqtt.New(), connectionString)
+		client, err := iotdevice.NewFromConnectionString(iotmqtt.New(), connectionString)
 		if err != nil {
-			log.Fatal(err)
+			initErr = fmt.Errorf("falha ao criar o cliente de conexão com Azure IOTHUB: %w", err)
+			return
 		}
 
-		if err = broker.client.Connect(context.Background()); err != nil {
-			log.Fatal(err)
+		if err := client.Connect(context.Background()); err != nil {
+			initErr = fmt.Errorf("falha ao estabelecer a conexão com Azure IOTHUB: %w", err)
+			return
 		}
+
+		broker.client = client
 	})
-	return broker, err
+
+	if initErr != nil {
+		return nil, initErr
+	}
+
+	return broker, nil
 }
 
 // Envia uma mensagem para o IoT Hub.

@@ -34,7 +34,7 @@ type Dispositivo struct {
 func (d *Dispositivo) ListarSensores() {
 	fmt.Println(d.ID)
 	for _, v := range d.Sensores {
-		fmt.Println(v.toString())
+		fmt.Println(v.String())
 	}
 }
 
