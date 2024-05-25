@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/South-s-Eagles/EEG-electroencephalogram/broker"
 	"github.com/South-s-Eagles/EEG-electroencephalogram/database"
 	"github.com/South-s-Eagles/EEG-electroencephalogram/dispositivo"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -35,6 +36,11 @@ func main() {
 	}
 	defer databaseClient.Database().Client().Disconnect(ctx)
 
+	azureBroker, err := broker.NewAzureBroker(ctx, "HostName=EEG-Simulator.azure-devices.net;DeviceId=eeg-simulator;SharedAccessKey=sxX+gQDWSpkpFbNfZ8xa1rifHRlO8n96aAIoTLnFe4I=")
+	if err != nil {
+		panic(err)
+	}
+
 	device, err := dispositivo.NewDispositivo(8)
 	if err != nil {
 		panic(err)
@@ -42,7 +48,7 @@ func main() {
 
 	dataChan := make(chan *dispositivo.Dispositivo)
 
-	go sendDataToDatabase(ctx, dataChan, databaseClient)
+	go sendDataToDatabase(ctx, dataChan, databaseClient, azureBroker)
 
 	for {
 		device.Run()
@@ -57,7 +63,7 @@ func main() {
 	}
 }
 
-func sendDataToDatabase(ctx context.Context, dataChan <-chan *dispositivo.Dispositivo, client *mongo.Collection) {
+func sendDataToDatabase(ctx context.Context, dataChan <-chan *dispositivo.Dispositivo, client *mongo.Collection, broker *broker.AzureBroker) {
 	var dataBuffer []*dispositivo.Dispositivo
 	timer := time.NewTimer(dataRetention)
 	defer timer.Stop()
@@ -85,7 +91,15 @@ func sendDataToDatabase(ctx context.Context, dataChan <-chan *dispositivo.Dispos
 				ConteudoAdicional: string(devicePayload),
 			}
 
-			client.InsertOne(ctx, payload)
+			finalPayload, err := json.Marshal(payload)
+			if err != nil {
+				fmt.Println("Erro ao serializar devicePayload:", err)
+				continue
+			}
+
+			// client.InsertOne(ctx, payload)
+			err = broker.SendMessage(finalPayload)
+			fmt.Println(err)
 
 			dataBuffer = nil
 			timer.Reset(dataRetention)

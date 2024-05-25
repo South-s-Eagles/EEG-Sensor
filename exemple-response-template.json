@@ -1,0 +1,9 @@
+{
+  "event": {
+    "origin": "eeg-simulator",
+    "module": "",
+    "interface": "",
+    "component": "",
+    "payload": "{\"dispositivoId\":\"01HYRYJ95RN9SFXJ09BN6YFSXR\",\"dispositivo\":\"electroencephalogram\",\"valor\":10,\"unidadeMedida\":\"Hz\",\"conteudoAdicional\":\"[{\\\"id\\\":\\\"01HYRYJ95RN9SFXJ09BN6YFSXR\\\",\\\"sensores\\\":[{\\\"valor\\\":0,\\\"posicao\\\":\\\"Nil\\\"},{\\\"valor\\\":0,\\\"posicao\\\":\\\"Nil\\\"},{\\\"valor\\\":0,\\\"posicao\\\":\\\"Nil\\\"},{\\\"valor\\\":0,\\\"posicao\\\":\\\"Nil\\\"},{\\\"valor\\\":0,\\\"posicao\\\":\\\"Nil\\\"},{\\\"valor\\\":0,\\\"posicao\\\":\\\"Nil\\\"},{\\\"valor\\\":0,\\\"posicao\\\":\\\"Nil\\\"},{\\\"valor\\\":0,\\\"posicao\\\":\\\"Nil\\\"}],\\\"bateria\\\":100,\\\"frequencia\\\":0.25,\\\"Amplitude\\\":0.875,\\\"ligado\\\":true},{\\\"id\\\":\\\"01HYRYJ95RN9SFXJ09BN6YFSXR\\\",\\\"sensores\\\":[{\\\"valor\\\":0,\\\"posicao\\\":\\\"Nil\\\"},{\\\"valor\\\":0,\\\"posicao\\\":\\\"Nil\\\"},{\\\"valor\\\":0,\\\"posicao\\\":\\\"Nil\\\"},{\\\"valor\\\":0,\\\"posicao\\\":\\\"Nil\\\"},{\\\"valor\\\":0,\\\"posicao\\\":\\\"Nil\\\"},{\\\"valor\\\":0,\\\"posicao\\\":\\\"Nil\\\"},{\\\"valor\\\":0,\\\"posicao\\\":\\\"Nil\\\"},{\\\"valor\\\":0,\\\"posicao\\\":\\\"Nil\\\"}],\\\"bateria\\\":100,\\\"frequencia\\\":0.25,\\\"Amplitude\\\":0.875,\\\"ligado\\\":true}]\"}"
+  }
+}

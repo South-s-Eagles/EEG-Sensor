@@ -20,7 +20,7 @@ type AzureBroker struct {
 }
 
 // NewAzureBroker cria uma nova instância de AzureBroker.
-func NewAzureBroker(connectionString string) (*AzureBroker, error) {
+func NewAzureBroker(ctx context.Context, connectionString string) (*AzureBroker, error) {
 	broker := &AzureBroker{}
 	var initErr error
 
@@ -31,7 +31,7 @@ func NewAzureBroker(connectionString string) (*AzureBroker, error) {
 			return
 		}
 
-		if err := client.Connect(context.Background()); err != nil {
+		if err := client.Connect(ctx); err != nil {
 			initErr = fmt.Errorf("falha ao estabelecer a conexão com Azure IOTHUB: %w", err)
 			return
 		}
